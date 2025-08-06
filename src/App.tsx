@@ -7,23 +7,33 @@ import SeriesCard from "./components/SeriesCard";
 
 import { Routes, Route, Link } from 'react-router-dom';
 import HomePage from "./HomePage";
-import BooksPage from "./BooksPage";
 import SeriesPage from "./SeriesPage";
 import MoviesPage from "./MoviesPage";
 import CartoonsPage from "./CartoonsPage";
 import AnimatedSeriesPage from "./AnimatedSeriesPage";
 import AnimePage from "./AnimePage";
+import BooksPage from "./BooksPage";
 
 function App() {
+
+  const [mediaList, setMediaList] = useState<MediaItem[]>([
+    {
+      id: uuidv4(),
+      title: 'Attack on Titan',
+      type: 'anime',
+      totalSeasons: 4,
+      watchedSeasons: 4,
+      status: 'Watching',
+      posterPath: 'https://image.tmdb.org/t/p/w500/your-image.jpg',
+      overview: 'Humanity fights titans...',
+    },
+  ]);
+
   return (
     <div>
       <nav>
         <Link to="/">
           Home
-        </Link>
-
-        <Link to="/books">
-          Books
         </Link>
 
         <Link to="/series">
@@ -44,6 +54,10 @@ function App() {
 
         <Link to="/anime">
           Anime
+        </Link>
+
+        <Link to="/books">
+          Books
         </Link>
 
       </nav>
