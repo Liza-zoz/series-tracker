@@ -1,21 +1,17 @@
 import { useContext } from 'react';
-import type { MediaItem } from './types/media';
-import SeriesCard from '../components/SeriesCard';
+import MediaCard from './components/MediaCard';
+import { useMedia } from './context/MediaContext';
 
-interface Props {
-    list: MediaItem[];
-}
 
-const SeriesPage: React.FC<Props> = ({ list }) => {
-    const seriesOnly = list.filter(item => item.type === 'series');
+const SeriesPage: React.FC = () => {
+    const { mediaList } = useMedia();
+    const seriesOnly = mediaList.filter(item => item.type === 'series');
 
     return (
         <div>
-            <h1>
-                Series
-            </h1>
+            <h1>Series</h1>
             {seriesOnly.map(item => (
-                <SeriesCard key={item.id} series={item} />
+                <MediaCard key={item.id} media={item} />
             ))}
         </div>
     );
