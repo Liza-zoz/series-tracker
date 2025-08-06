@@ -6,4 +6,6 @@ export interface Series {
     totalSeasons: number;
     watchedSeasons: number;
     status: WatchStatus;
+    posterPath?: string;
+    overview?: string;
 }  

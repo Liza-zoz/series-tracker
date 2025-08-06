@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import { Series, WatchStatus } from "./types/series";
-import { v4 vs uuidv4 } from 'uuid';
+import type { Series, WatchStatus } from "./types/series";
+import { v4 as uuidv4 } from 'uuid';
+import AddSeriesForm from "./components/AddSeriesForm";
 
 
 function App() {
@@ -25,10 +26,16 @@ function App() {
     <div>
       <h1>Series tracker </h1>
 
+      <AddSeriesForm 
+        onAdd={(newSeries) => setSeriesList([...seriesList, newSeries])}
+      />
+      
       <ul>
         {seriesList.map((series) => (
           <li key={series.id}>
             <strong>{series.title}</strong> - {series.status}
+            {series.posterPath && <img src={series.posterPath} alt={series.title} width="150" />}
+            {series.overview && <p>{series.overview}</p>}
           </li>
         ))}
       </ul>
