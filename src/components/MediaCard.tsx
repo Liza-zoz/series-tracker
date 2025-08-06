@@ -1,11 +1,11 @@
 import React from 'react';
-import type { Series } from '../types/series';
+import type { MediaItem } from '../types/media';
 
-interface SeriesCardProps {
-    series: Series;
+interface MediaCardProps {
+    media: MediaItem;
 }
 
-const SeriesCard: React.FC<SeriesCardProps> = ({ series }) => {
+const MediaCard: React.FC<MediaCardProps> = ({ media }) => {
     return (
         <div style={{
             border: '1px solid #ccc',
@@ -17,31 +17,34 @@ const SeriesCard: React.FC<SeriesCardProps> = ({ series }) => {
             backgroundColor: '#f9f9f9',
             boxShadow: '0 2px 6px rgba(0,0,0,0.1)',
         }}>
-            {series.posterPath && (
-                <img src={series.posterPath}
-                    alt={series.title}
+            {media.posterPath && (
+                <img src={media.posterPath}
+                    alt={media.title}
                     style={{ width: '120px', borderRadius: '4px', objectFit: 'cover' }}
                 />
             )}
             
             <div>
                 <h2 style={{ margin: 0 }}>
-                    {series.title}
+                    {media.title}
                 </h2>
                 <p style={{ fontSize: '0.9rem', margin: '0.3rem 0' }}>
-                    Status: <strong>{series.status}</strong>
+                    Status: {media.status}
                 </p>
-                {series.overview && (
+                {media.overview && 
                     <p style={{ fontSize: '0.85rem', lineHeight: 1.4 }}>
-                        {series.overview}
+                        {media.overview}
+                    </p>
+                }
+                {media.type === 'book' && media.totalPages && (
+                    <p>
+                        Pages read: {media.readPages}/{media.totalPages}
                     </p>
                 )}
-                <p>
-                    Seasons watched: {series.watchedSeasons}/{series.totalSeasons}
-                </p>
+                
             </div>
         </div>
     );
 };
 
-export default SeriesCard;
+export default MediaCard;

@@ -13,7 +13,7 @@ export interface MediaItem {
     title: string;
     type: MediaType;
     totalSeasons?: number;
-    wathedSeasons?: number;
+    watchedSeasons?: number;
     totalPages?: number;
     readPages?: number;
     status: WatchStatus;

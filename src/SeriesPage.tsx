@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import type { MediaItem } from '../types/media';
+import type { MediaItem } from './types/media';
 import SeriesCard from '../components/SeriesCard';
 
 interface Props {
