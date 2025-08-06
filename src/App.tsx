@@ -1,46 +1,65 @@
 import React, { useState } from "react";
 import type { Series, WatchStatus } from "./types/series";
 import { v4 as uuidv4 } from 'uuid';
-import AddSeriesForm from "./components/AddSeriesForm";
 
+import AddSeriesForm from "./components/AddSeriesForm";
+import SeriesCard from "./components/SeriesCard";
+
+import { Routes, Route, Link } from 'react-router-dom';
+import HomePage from "./HomePage";
+import BooksPage from "./BooksPage";
+import SeriesPage from "./SeriesPage";
+import MoviesPage from "./MoviesPage";
+import CartoonsPage from "./CartoonsPage";
+import AnimatedSeriesPage from "./AnimatedSeriesPage";
+import AnimePage from "./AnimePage";
 
 function App() {
-  const [seriesList, setSeriesList] = useState<Series[]>([
-    {
-      id: uuidv4(),
-      title: 'Stranger Things',
-      totalSeasons: 4,
-      watchedSeasons: 2,
-      status: 'Watching',
-    },
-    {
-      id: uuidv4(),
-      title: 'Breaking Bad',
-      totalSeasons: 5,
-      watchedSeasons: 5,
-      status: 'Viewed',
-    },
-  ]);
-
   return (
     <div>
-      <h1>Series tracker </h1>
+      <nav>
+        <Link to="/">
+          Home
+        </Link>
 
-      <AddSeriesForm 
-        onAdd={(newSeries) => setSeriesList([...seriesList, newSeries])}
-      />
-      
-      <ul>
-        {seriesList.map((series) => (
-          <li key={series.id}>
-            <strong>{series.title}</strong> - {series.status}
-            {series.posterPath && <img src={series.posterPath} alt={series.title} width="150" />}
-            {series.overview && <p>{series.overview}</p>}
-          </li>
-        ))}
-      </ul>
+        <Link to="/books">
+          Books
+        </Link>
+
+        <Link to="/series">
+          Series
+        </Link>
+
+        <Link to="/movies">
+          Movies
+        </Link>
+
+        <Link to="/cartoons">
+          Cartoon
+        </Link>
+
+        <Link to="/animated">
+          Animated Series
+        </Link>
+
+        <Link to="/anime">
+          Anime
+        </Link>
+
+      </nav>
+
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/books" element={<BooksPage />} />
+        <Route path="/series" element={<SeriesPage />} />
+        <Route path="/movies" element={<MoviesPage />} />
+        <Route path="/cartoons" element={<CartoonsPage />} />
+        <Route path="/animated" element={<AnimatedSeriesPage />} />
+        <Route path="/anime" element={<AnimePage />} />
+      </Routes>
+
     </div>
   );
-}
+};
 
-export default App
+export default App;
