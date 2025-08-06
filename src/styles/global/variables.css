@@ -1,0 +1,9 @@
+:root {
+    --color-bg: #111;
+    --color-text: #eee;
+    --color-accent: #00bcd4;
+    --color-muted: #999;
+    --font-main: 'Segoe UI', sans-serif;
+    --radius: 8px;
+    --transition: 0.2s ease;
+}

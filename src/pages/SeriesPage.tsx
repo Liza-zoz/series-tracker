@@ -1,6 +1,5 @@
-import { useContext } from 'react';
-import MediaCard from './components/MediaCard';
-import { useMedia } from './context/MediaContext';
+import MediaCard from '../components/MediaCard';
+import { useMedia } from '../context/MediaContext';
 
 
 const SeriesPage: React.FC = () => {

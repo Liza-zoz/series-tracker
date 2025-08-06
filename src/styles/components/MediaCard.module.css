@@ -1,0 +1,47 @@
+/* .card {
+    display: flex;
+    background-color: #1e1e1e;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    margin-bottom: 1.5rem;
+    color: #eee;
+    transition: transform 0.2s ease;
+}
+
+.card:hover {
+    transform: scale(1.02);
+}
+
+.poster {
+    width: 120px; */
+    /* height: 100%;
+    object-fit: cover;
+}
+
+.content {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.title {
+    margin: 0;
+    font-size: 1.25rem;
+}
+
+.status {
+    font-size: 0.9rem;
+    opacity: 0.8;
+}
+
+.overview {
+    font-size: 0.85rem;
+    line-height: 1.4;
+}
+
+.details {
+    font-size: 0.75rem;
+    color: #bbb;
+} */

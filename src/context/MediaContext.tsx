@@ -18,11 +18,10 @@ export const MediaProvider: React.FC<{ children: React.ReactNode }> = ({ childre
             totalSeasons: 4,
             watchedSeasons: 4,
             status: 'Watching',
-            posterPath: 'https://image.tmdb.org/t/p/w500/your-image.jpg',
+            posterPath: './src/assets/photo_2023-04-05_15-15-12.jpg',
             overview: 'Humanity fights titans...',
         },
     ]);
-
     return (
         <MediaContext.Provider value={{ mediaList, setMediaList }}>
             {children}

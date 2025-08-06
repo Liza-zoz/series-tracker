@@ -1,5 +1,6 @@
 import React from 'react';
 import type { MediaItem } from '../types/media';
+import styles from '../styles/components/MediaCard.module.css';
 
 interface MediaCardProps {
     media: MediaItem;
@@ -7,37 +8,36 @@ interface MediaCardProps {
 
 const MediaCard: React.FC<MediaCardProps> = ({ media }) => {
     return (
-        <div style={{
-            border: '1px solid #ccc',
-            borderRadius: '8px',
-            padding: '1rem',
-            marginBottom: '1rem',
-            display: 'flex',
-            gap: '1rem',
-            backgroundColor: '#f9f9f9',
-            boxShadow: '0 2px 6px rgba(0,0,0,0.1)',
-        }}>
+        <div className={styles.card}>
             {media.posterPath && (
                 <img src={media.posterPath}
                     alt={media.title}
-                    style={{ width: '120px', borderRadius: '4px', objectFit: 'cover' }}
+                    className={styles.poster}
                 />
             )}
             
-            <div>
-                <h2 style={{ margin: 0 }}>
+            <div className={styles.content}>
+                <h2 className={styles.title}>
                     {media.title}
                 </h2>
-                <p style={{ fontSize: '0.9rem', margin: '0.3rem 0' }}>
-                    Status: {media.status}
+
+                <p className={styles.status}>
+                    Status: <strong>{media.status}</strong>
                 </p>
+
                 {media.overview && 
-                    <p style={{ fontSize: '0.85rem', lineHeight: 1.4 }}>
+                    <p className={styles.overview}>
                         {media.overview}
+                    </p>}
+
+                {media.type === 'series' || media.type === 'anime' ? (
+                    <p className={styles.details}>
+                        Seasons watched: {media.watchedSeasons}/{media.totalSeasons}
                     </p>
-                }
+                ) : null}
+
                 {media.type === 'book' && media.totalPages && (
-                    <p>
+                    <p className={styles.details}>
                         Pages read: {media.readPages}/{media.totalPages}
                     </p>
                 )}

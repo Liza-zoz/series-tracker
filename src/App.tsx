@@ -1,46 +1,20 @@
 import { Routes, Route, Link } from 'react-router-dom';
-import HomePage from "./HomePage";
-import SeriesPage from "./SeriesPage";
-import MoviesPage from "./MoviesPage";
-import CartoonsPage from "./CartoonsPage";
-import AnimatedSeriesPage from "./AnimatedSeriesPage";
-import AnimePage from "./AnimePage";
-import BooksPage from "./BooksPage";
+import HomePage from "./pages/HomePage";
+import SeriesPage from "./pages/SeriesPage";
+import MoviesPage from "./pages/MoviesPage";
+import CartoonsPage from "./pages/CartoonsPage";
+import AnimatedSeriesPage from "./pages/AnimatedSeriesPage";
+import AnimePage from "./pages/AnimePage";
+import BooksPage from "./pages/BooksPage";
+
+import Navbar from './components/layout/Navbar';
 
 function App() {
 
   return (
     <div>
-      <nav>
-        <Link to="/">
-          Home
-        </Link>
 
-        <Link to="/series">
-          Series
-        </Link>
-
-        <Link to="/movies">
-          Movies
-        </Link>
-
-        <Link to="/cartoons">
-          Cartoon
-        </Link>
-
-        <Link to="/animated">
-          Animated Series
-        </Link>
-
-        <Link to="/anime">
-          Anime
-        </Link>
-
-        <Link to="/books">
-          Books
-        </Link>
-
-      </nav>
+      <Navbar />
 
       <Routes>
         <Route path="/" element={<HomePage />} />
