@@ -1,10 +1,9 @@
 import MediaCard from '../components/MediaCard';
 import { useMedia } from '../context/MediaContext';
 
-
 const SeriesPage: React.FC = () => {
-    const { mediaList } = useMedia();
-    const seriesOnly = mediaList.filter(item => item.type === 'series');
+    const { state } = useMedia();
+    const seriesOnly = state.items.filter(item => item.type === 'series');
 
     return (
         <div>

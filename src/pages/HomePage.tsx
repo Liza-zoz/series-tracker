@@ -1,11 +1,17 @@
 import { useMedia } from "../context/MediaContext";
 import MediaCard from "../components/MediaCard";
 import { Link } from "react-router-dom";
+import { useMemo } from "react";
 
 const HomePage: React.FC = () => {
-    const { mediaList } = useMedia();
 
-    const recentlyAdded = [...mediaList].reverse().slice(0, 5);
+    const { state } = useMedia();           // <— тут
+    const items = state.items;              // <— і тут
+
+    const recentlyAdded = useMemo(
+        () => [...items].reverse().slice(0, 5),
+        [items]
+    );
 
     return (
         <div>

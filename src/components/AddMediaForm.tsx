@@ -12,18 +12,30 @@ const AddMediaForm: React.FC = () => {
     const [totalSeasons, setTotalSeasons] = useState(1);
     const [totalPages, setTotalPages] = useState(0);
     const [status, setStatus] = useState<WatchStatus>("Listed");
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState<string | null>(null);
 
-    const handleSabmit = async (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
+        const q = title.trim();
+        if (!q) return;
 
-        let found: any = null;
-        if (type !== "book") {
-            found = await searchMedia(title, type);
-        }
+
+        setError(null);
+        setLoading(true);
+
+        try {
+            let found: any = null;
+            if (type !== "book") {
+                // cartoons/animated/anime теж TV у TMDB
+                const tmdbType = type === "movie" ? "movie" : "tv";
+                found = await searchMedia(q, tmdbType);
+            }
 
         const newItem: MediaItem = {
             id: uuidv4(),
-            title: title.trim(),
+            tmdbId: found?.id,  
+            title: q,
             type,
             status,
             totalSeasons: type !== "book" ? totalSeasons : undefined,
@@ -34,19 +46,24 @@ const AddMediaForm: React.FC = () => {
                 ? `https://image.tmdb.org/t/p/w500${found.poster_path}`
                 : undefined,
             overview: found?.overview || undefined,
-            tmdbId: found?.id,
         };
 
-        addItem(newItem);
+            addItem(newItem);
+            
         setTitle("");
         setType("series");
         setTotalSeasons(1);
         setTotalPages(0);
         setStatus("Listed")
+        } catch (e) {
+            setError("Щось пішло не так. Спробуй ще раз.");
+        } finally {
+            setLoading(false);
+        }
     };
 
     return (
-        <form onSubmit={handleSabmit}>
+        <form onSubmit={handleSubmit}>
             <input
                 type="text"
                 placeholder="Title"
@@ -95,8 +112,11 @@ const AddMediaForm: React.FC = () => {
                 <option value="Abandoned">Abandoned</option>
             </select>
 
-            <button type="submit">Add</button>
+            <button type="submit" disabled={loading}>
+                {loading ? "Adding..." : "Add"}
+            </button>
 
+            {error && <p style={{ color: "tomato" }}>{error}</p>}
         </form>
 
     )
