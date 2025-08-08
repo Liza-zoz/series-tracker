@@ -1,7 +1,15 @@
 import { NavLink } from 'react-router-dom';
 import styles from '../../styles/components/Navbar.module.css';
 
-const Navbar = () => {
+import { useState, useEffect } from "react";
+
+
+interface Props {
+    searchTerm: string;
+    setSearchTerm: (value: string) => void;
+}
+
+const Navbar: React.FC<Props> = ({ searchTerm, setSearchTerm }) => {
     return (
         <nav className={styles.nav}>
             <ul className={styles.navList}>
@@ -13,6 +21,15 @@ const Navbar = () => {
                 <li><NavLink to="/anime">Anime</NavLink></li>
                 <li><NavLink to="/books">Books</NavLink></li>
             </ul>
+
+            <input
+                type="text"
+                placeholder="Search..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                className={styles.searchInput}
+            />
+
         </nav>
     );
 };

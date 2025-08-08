@@ -21,4 +21,5 @@ export interface MediaItem {
     overview?: string;
     comment?: string;
     rating?: number;
+    tmdbId?: number;
 }

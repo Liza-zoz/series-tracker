@@ -1,4 +1,7 @@
-import { Routes, Route, Link } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
+import { useState } from "react";
+import { MediaProvider } from './context/MediaContext';
+
 import HomePage from "./pages/HomePage";
 import SeriesPage from "./pages/SeriesPage";
 import MoviesPage from "./pages/MoviesPage";
@@ -9,12 +12,18 @@ import BooksPage from "./pages/BooksPage";
 
 import Navbar from './components/layout/Navbar';
 
+
+
 function App() {
 
+  const [searchTerm, setSearchTerm] = useState("");
+
   return (
+    <MediaProvider>
+    
     <div>
 
-      <Navbar />
+      <Navbar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
 
       <Routes>
         <Route path="/" element={<HomePage />} />
@@ -26,7 +35,8 @@ function App() {
         <Route path="/anime" element={<AnimePage />} />
       </Routes>
 
-    </div>
+      </div>
+    </MediaProvider>
   );
 };
 
